@@ -160,7 +160,7 @@ export default function About() {
                 </div>
                 <div className="mt-8 grid grid-cols-3 gap-4">
                   {[
-                    { label: "Founded", value: "2022" },
+                    { label: "Founded", value: "2025" },
                     { label: "Based in", value: "Pakistan 🇵🇰" },
                     { label: "Clients in", value: "10+ Countries" },
                   ].map((item) => (
