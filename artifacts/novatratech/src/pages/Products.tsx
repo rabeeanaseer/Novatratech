@@ -70,7 +70,7 @@ export default function Products() {
           <motion.div initial={{ opacity: 0, scale: 0.95 }} animate={{ opacity: 1, scale: 1 }}
             className="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-[#2563EB]/20 bg-[#2563EB]/8 text-[#2563EB] text-sm font-bold mb-8">
             <Bell className="w-3.5 h-3.5" />
-            Coming 2025 · Join the Waitlist
+            Coming 2026 · Join the Waitlist
           </motion.div>
 
           <motion.h1 initial={{ opacity: 0, y: 28 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.08 }}
