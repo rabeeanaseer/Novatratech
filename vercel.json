@@ -1,7 +1,7 @@
 {
   "buildCommand": "pnpm --filter @workspace/novatratech run build",
   "outputDirectory": "artifacts/novatratech/dist/public",
-  "installCommand": "pnpm install --frozen-lockfile",
+  "installCommand": "pnpm install --frozen-lockfile --shamefully-hoist",
   "rewrites": [
     { "source": "/((?!api/).*)", "destination": "/index.html" }
   ],
