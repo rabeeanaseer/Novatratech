@@ -1,4 +1,4 @@
-import * as tls from "node:tls";
+import * as tls from "tls";
 
 const b64 = (s: string) => Buffer.from(s).toString("base64");
 
