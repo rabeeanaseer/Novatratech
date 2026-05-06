@@ -206,7 +206,7 @@ export default function Home() {
           <AnimatedSection>
             <motion.div variants={fadeUp} className="text-center mb-10">
               <p className="text-xs font-bold uppercase tracking-[0.15em] text-[#2563EB] mb-3">Our Products</p>
-              <h2 className="text-4xl md:text-5xl font-black text-black tracking-tight">Launching Soon</h2>
+                <h2 className="text-4xl md:text-5xl font-black text-black tracking-tight">Currently onboarding founding users</h2>
             </motion.div>
             <motion.div variants={fadeUp}
               className="max-w-2xl mx-auto p-8 md:p-12 rounded-3xl border border-[#E8E5E1] text-center relative overflow-hidden"
