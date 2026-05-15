@@ -1,14 +1,14 @@
 import * as https from "https";
 
-function httpsPost(url: string, body: unknown, headers: Record<string, string>): Promise<{ status: number; text: string }> {
+function httpsPost(url: string, body: unknown): Promise<{ status: number; text: string }> {
   return new Promise((resolve, reject) => {
     const payload = JSON.stringify(body);
     const u = new URL(url);
     const req = https.request({
       hostname: u.hostname,
-      path: u.pathname + u.search,
+      path: u.pathname,
       method: "POST",
-      headers: { ...headers, "Content-Type": "application/json", "Content-Length": Buffer.byteLength(payload) },
+      headers: { "Content-Type": "application/json", "Content-Length": Buffer.byteLength(payload) },
     }, (res) => {
       let data = "";
       res.on("data", (chunk) => (data += chunk));
@@ -28,15 +28,16 @@ export default async function handler(req: any, res: any) {
     const { name, email, projectType, budget, message } = req.body ?? {};
     if (!name || !email || !projectType) return res.status(400).json({ error: "Missing required fields" });
 
-    const apiKey = process.env.RESEND_API_KEY;
-    if (apiKey) {
-      const result = await httpsPost("https://api.resend.com/emails", {
-        from: "NovatraTech Website <onboarding@resend.dev>",
-        to: ["novatratechsmcpvtltd@gmail.com"],
-        reply_to: email,
+    const key = process.env.WEB3FORMS_KEY;
+    if (key) {
+      const result = await httpsPost("https://api.web3forms.com/submit", {
+        access_key: key,
         subject: `New Inquiry: ${projectType} — ${name}`,
-        text: [`Name: ${name}`, `Email: ${email}`, `Project Type: ${projectType}`, `Budget: ${budget || "Not specified"}`, ``, `Message:`, message || "(none)"].join("\n"),
-      }, { Authorization: `Bearer ${apiKey}` });
+        name, email,
+        project_type: projectType,
+        budget: budget || "Not specified",
+        message: message || "(none)",
+      });
       if (result.status >= 400) throw new Error(result.text);
     }
 
